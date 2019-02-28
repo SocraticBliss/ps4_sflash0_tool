@@ -60,7 +60,7 @@ def unpack(file, dir):
     with open(file, 'rb') as input:
         sflash0 = input.read()
         
-        # Check sflash0 binary...
+        # Check input file...
         if sflash0[:0x4] != 'SONY':
             raise SystemExit('\nInvalid PS4 Sflash0 binary!')
         
@@ -77,9 +77,13 @@ def pack(dir, name):
 
     # Pack entries into a Sflash0 binary...
     with open(name, 'wb') as output:
-        for num, entry in enumerate(SFLASH0):
-            with open('%s/%s' % (dir, SFLASH0[num][0]), 'rb') as input:
-                output.write(input.read())
+        try:
+            for num, entry in enumerate(SFLASH0):
+                with open('%s/%s' % (dir, SFLASH0[num][0]), 'rb') as input:
+                    output.write(input.read())
+        
+        except IOError as error:
+            raise SystemExit('\n%s' % error)
 
 def main(argc, argv):
     
