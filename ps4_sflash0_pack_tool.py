@@ -4,9 +4,9 @@
 
 '''
     0x0       <- Header (0x1000)
-    0x1000    <- Unk (0x1000)
-    0x2000    <- MBR1 (0x1000) (for sflash0s1.cryptx3b)
-    0x3000    <- MBR2 (0x1000) (for sflash0s1.cryptx3)
+    0x1000    <- Unk  (0x1000)
+    0x2000    <- MBR1 (for sflash0s1.cryptx3b) (0x1000) 
+    0x3000    <- MBR2 (for sflash0s1.cryptx3) (0x1000)
     0x4000    <- sflash0s0x32b (emc_ipl) (0x60000)
     0x64000   <- sflash0s0x32  (emc_ipl) (0x60000)
     0xC4000   <- sflash0s0x33  (eap_kbl) (0x80000)
@@ -15,8 +15,8 @@
     0x1D0000  <- sflash0s0x0   (blank1) (0x30000)
     0x200000  <- Header2 (0x1000)
     0x201000  <- Unk2 (0x1000)
-    0x202000  <- MBR3 (0x1000) (for sflash0s1.cryptx2b)
-    0x203000  <- MBR4 (0x1000) (for sflash0s1.cryptx2)
+    0x202000  <- MBR3 (for sflash0s1.cryptx2b) (0x1000)
+    0x203000  <- MBR4 (for sflash0s1.cryptx2) (0x1000)
     0x204000  <- sflash0s1.cryptx2b (sam_ipl/secure loader) (0x3E000)
     0x242000  <- sflash0s1.cryptx2  (sam_ipl/secure loader) (0x3E000)
     0x280000  <- sflash0s1.cryptx1  (idata) (0x80000)
@@ -37,7 +37,7 @@ SFLASH0 = [
 ('mbr2.bin',     0x3000,    0x1000),
 ('emc_iplb.bin', 0x4000,    0x60000),
 ('emc_ipl.bin',  0x64000,   0x60000),
-('emc_kbl.bin',  0xC4000,   0x80000),
+('eap_kbl.bin',  0xC4000,   0x80000),
 ('wifi_fw.bin',  0x144000,  0x80000),
 ('nvs.bin',      0x1C4000,  0xC000),
 ('blank.bin',    0x1D0000,  0x30000),
