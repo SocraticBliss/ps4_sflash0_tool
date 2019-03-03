@@ -83,7 +83,7 @@ def unpack(file, dir):
                     mbrfile = input.read()
                 
                 name = SFLASH0[num][0].split('.')[0][-1:]
-                print('Master Boot Record %s' % name)
+                print('Master Boot Record %s Information' % name)
                 begin = 0x40
                 
                 for num in xrange(17):
@@ -95,7 +95,7 @@ def unpack(file, dir):
                     type = struct.unpack('<B', mbrfile[begin+0x8:begin+0x9])[0]
                     active = struct.unpack('<B', mbrfile[begin+0x9:begin+0xA])[0]
                     
-                    print('Partition %d, offset=%#x, size=%#x, type=0x%s, active?=0x%s' % (num, offset * 0x200, size * 0x200, type, active))
+                    print('Partition %d: offset=%#x, size=%#x, type=0x%s, active?=0x%s' % (num, offset * 0x200, size * 0x200, type, active))
                     begin += 0x14
                 
 # Pack entries into a Sflash0 binary...
