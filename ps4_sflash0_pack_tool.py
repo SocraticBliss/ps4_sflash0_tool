@@ -84,8 +84,8 @@ def unpack(file, dir):
                 
                 name = SFLASH0[num][0].split('.')[0][-1:]
                 print('Master Boot Record %s Information' % name)
-                begin = 0x40
                 
+                begin = 0x40
                 for num in xrange(17):
                     
                     offset = struct.unpack('<I', mbrfile[begin:begin+0x4])[0]
