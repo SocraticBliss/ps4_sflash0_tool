@@ -3,6 +3,7 @@
 # Thanks to zecoxao <3
 
 import os
+import struct
 import sys
 
 '''
@@ -74,7 +75,29 @@ def unpack(file, dir):
                 
                 output.write(sflash0[begin:end])
                 print('Unpacked %s' % SFLASH0[num][0])
-
+            
+            # Print the Master Boot Record Information...
+            if 'mbr' in SFLASH0[num][0]:
+                
+                with open('%s/%s' % (dir, SFLASH0[num][0]), 'rb') as input:
+                    mbrfile = input.read()
+                
+                name = SFLASH0[num][0].split('.')[0][-1:]
+                print('Master Boot Record %s' % name)
+                begin = 0x40
+                
+                for num in xrange(17):
+                    
+                    offset = struct.unpack('<I', mbrfile[begin:begin+0x4])[0]
+                    if offset == 0: break
+                    
+                    size = struct.unpack('<I', mbrfile[begin+0x4:begin+0x8])[0]
+                    type = struct.unpack('<B', mbrfile[begin+0x8:begin+0x9])[0]
+                    active = struct.unpack('<B', mbrfile[begin+0x9:begin+0xA])[0]
+                    
+                    print('Partition %d, offset=%#x, size=%#x, type=0x%s, active?=0x%s' % (num, offset * 0x200, size * 0x200, type, active))
+                    begin += 0x14
+                
 # Pack entries into a Sflash0 binary...
 def pack(dir, file):
 
@@ -82,7 +105,7 @@ def pack(dir, file):
         try:
             for num, entry in enumerate(SFLASH0):
                 with open('%s/%s' % (dir, SFLASH0[num][0]), 'rb') as input:
-                    output.write(input.read())
+                    output.write(input.read())       
         
         except IOError as error:
             raise SystemExit('\n%s' % error)
