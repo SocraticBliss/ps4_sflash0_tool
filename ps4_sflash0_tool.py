@@ -1,4 +1,4 @@
-# PS4 Sflash0 Pack Tool
+# PS4 Sflash0 Tool
 # SocraticBliss (R)
 # Thanks to zecoxao <3
 
