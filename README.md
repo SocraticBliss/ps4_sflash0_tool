@@ -1,8 +1,8 @@
-# PS4 SFlash0 Pack Tool
+# PS4 SFlash0 [Un]Pack Tool
 
 SocraticBliss (R)
 
-ps4_sflash_pack_tool.py: Python script for packing/unpacking your PS4's SFlash0
+ps4_sflash_tool.py: Python script for [un]packing your PS4's SFlash0
 
 # Usage
 
