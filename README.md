@@ -1,4 +1,4 @@
-# PS4 SFlash0 [Un]Pack Tool
+# PS4 SFlash0 Tool
 
 SocraticBliss (R)
 
