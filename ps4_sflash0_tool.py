@@ -1,6 +1,10 @@
-# PS4 Sflash0 Tool
-# SocraticBliss (R)
-# Thanks to zecoxao <3
+#!/usr/bin/env python
+'''
+
+PS4 Sflash0 Tool by SocraticBliss (R)
+Thanks to zecoxao <3
+
+'''
 
 import os
 import struct
@@ -65,7 +69,7 @@ def unpack(file, dir):
         sflash0 = input.read()
         
         # Validate input file...
-        if sflash0[:0x4] != 'SONY':
+        if sflash0[:0x4] != b'SONY':
             raise SystemExit('\nInvalid PS4 Sflash0 binary!')
         
         for num, entry in enumerate(SFLASH0):
@@ -86,7 +90,7 @@ def unpack(file, dir):
                 print('Master Boot Record %s Information' % name)
                 
                 begin = 0x40
-                for num in xrange(17):
+                for num in range(17):
                     
                     offset = struct.unpack('<I', mbrfile[begin:begin+0x4])[0]
                     if offset == 0: break
